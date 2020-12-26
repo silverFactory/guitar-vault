@@ -7,6 +7,8 @@ class CreateAmps < ActiveRecord::Migration[5.2]
       t.integer :channels
       t.integer :num_speakers
       t.integer :speaker_size
+      t.integer :user_id
+      t.integer :manufacturer_id
     end
   end
 end
