@@ -1,0 +1,7 @@
+<h1><%= @user.username %>'s Amps</h1>
+<% @amps.each do |amp| %>
+<a href="/amps/<%= amp.id %>"><%= amp.name %></a><br>
+<% end %>
+<br>
+<a href="/amps/new">Add Amp</a><br><br>
+<a href="/users/<%= @user.id %>">Back to your Vault</a>

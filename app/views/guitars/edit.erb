@@ -1,0 +1,11 @@
+<h1>Edit Guitar Info</h1>
+<form action="/guitars/<%= @guitar.id %>/edit" method="post">
+<input type="hidden" name="_method" id="hidden" value="patch">
+<label for="model">Model Name: </label>
+<input type="text" name="guitar[model]" id="model" value="<%= @guitar.model %>"><br>
+<label for="category">Category: </label>
+<input type="text" name="guitar[category]" id="category" value="<%= @guitar.category %>"><br>
+<label for="manufacturer">Manufacturer: </label>
+<input type="text" name="manufacturer" id="manufacturer" value="<%= @manufacturer.name %>"><br>
+<button type="submit" name="Edit Guitar">Edit Guitar</button>
+</form>

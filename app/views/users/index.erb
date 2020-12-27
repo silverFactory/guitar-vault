@@ -1,0 +1,24 @@
+<h1><%= @user.username %>'s Vault</h1>
+<h2><a href="/guitars">Guitars: </a></h2>
+<% @guitars.each do |guitar| %>
+<a href="/guitars/<%= guitar.id %>"><%= guitar.model %></a><br>
+<% end %>
+<br>
+<a href="/guitars/new">Add Guitar</a><br>
+
+<h2>Amps: </h2>
+<% @amps.each do |amp| %>
+<a href="/amps/<%= amp.id %>"><%= amp.name %></a><br>
+<% end %>
+<br>
+<a href="/amps/new">Add Amp</a><br>
+
+<h2>Pedals: </h2>
+<% @pedals.each do |pedal| %>
+<a href="/pedals/<%= pedal.id %>"><%= pedal.name %></a><br>
+<% end %>
+<br>
+<a href="/pedals/new">Add Pedal</a><br>
+
+<br><br>
+<a href="/logout">Log Out</a>
