@@ -7,7 +7,11 @@ class ApplicationController < Sinatra::Base
     end
 
   get '/' do
-    erb :'index'
+    if logged_in?
+      redirect "/users/#{session[:user_id]}"
+    else
+      erb :'index'
+    end
   end
 
   def valid_signup?(params)
@@ -17,7 +21,7 @@ class ApplicationController < Sinatra::Base
       false
     end
   end
-  
+
   def logged_in?
     !!session[:user_id]
   end
