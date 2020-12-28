@@ -1,0 +1,7 @@
+<h1><%= @user.username %>'s Pedals</h1>
+<% @pedals.each do |pedal| %>
+<a href="/pedals/<%= pedal.id %>"><%= pedal.name %></a><br>
+<% end %>
+<br>
+<a href="/pedals/new">Add Pedal</a><br><br>
+<a href="/users/<%= @user.id %>">Back to your Vault</a>
