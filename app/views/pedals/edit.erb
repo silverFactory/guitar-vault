@@ -1,0 +1,13 @@
+<h1>Edit your Pedal's Info</h1>
+<form action="/pedals/<%= @pedal.id %>/edit" method="post">
+<input type="hidden" id="hidden" name="_method" value="patch">
+<label for="pedal_name">Name: </label>
+<input type="text" name="pedal[name]" id="pedal_name" value="<%= @pedal.name %>"><br>
+<label for="effect_type">Effect Type: </label>
+<input type="text" name="pedal[effect_type]" id="effect_type" value="<%= @pedal.effect_type %>><br>
+<label for="power_supply">Power Supply: </label>
+<input type="text" name="pedal[power_supply]" id="power_supply" value="<%= @pedal.power_supply %>><br>
+<label for="manufacturer">Manufacturer: </label>
+<input type="text" name="manufacturer" id="manufacturer"  value="<%= @pedal.manufacturer.name %>><br>
+<button type="submit" name="Edit Pedal">Edit Pedal</button>
+</form>

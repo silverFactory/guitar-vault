@@ -40,16 +40,18 @@ class GuitarsController < ApplicationController
     @manufacturer = @guitar.manufacturer
     if session[:user_id] == @guitar.user_id
       erb :'/guitars/edit'
+    else
+      redirect '/'
     end
   end
 
-  post '/guitars/:id/edit' do
+  patch '/guitars/:id' do
     @guitar = Guitar.find(params[:id])
     @guitar.update(params[:guitar])
     @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
     @guitar.manufacturer_id = @manufacturer.id
     @guitar.save
-    redirect '/guitars'
+    redirect "/guitars/#{@guitar.id}"
   end
 
   post '/guitars/:id/delete' do

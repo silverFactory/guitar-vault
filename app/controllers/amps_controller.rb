@@ -37,13 +37,15 @@ class AmpsController < ApplicationController
 
   get '/amps/:id/edit' do
     @amp = Amp.find(params[:id])
-    @manufacturer = @amp.manufacturer
+    #@manufacturer = @amp.manufacturer
     if session[:user_id] == @amp.user_id
       erb :'/amps/edit'
+    else
+      redirect '/'
     end
   end
 
-  patch /amps/:id/edit' do
+  patch '/amps/:id' do
     @amp = Amp.update(params[:amp])
     @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
     @amp.manufacturer = @manufacturer

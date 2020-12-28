@@ -1,0 +1,10 @@
+<h1><%= @pedal.manufacturer.name %> <%= @pedal.name %></h1>
+<p>Effect type: <%= @pedal.effect_type %></p><br>
+<p>Power Supply: <%= @pedal.power_supply %></p><br>
+<form action="/pedals/<%= @pedal.id %>/edit" method="get">
+<button type="submit" name="Edit pedal">Edit Pedal</button>
+</form>
+<form action="/pedals/<%= @pedal.id %>/delete" method="post">
+<button type="submit" name="Delete pedal">Delete Pedal</button>
+</form>
+<a href="/users/<%= @pedal.user_id %>">Back to your Vault</a>

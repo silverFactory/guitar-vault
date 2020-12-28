@@ -26,5 +26,38 @@ class PedalsController < ApplicationController
     redirect "/pedals/#{@pedal.id}"
   end
 
+  get '/pedals/:id' do
+    @pedal = Pedal.find(params[:id])
+    if session[:user_id] == @pedal.user_id
+      erb :'/pedals/show'
+    else
+      redirect '/'
+    end
+  end
+
+  get '/pedals/:id/edit' do
+    @pedal = Pedal.find(params[:id])
+    #@manufacturer = @pedal.manufacturer
+    if session[:user_id] == @pedal.user_id
+      erb :'/pedals/edit'
+    else
+      redirect '/'
+    end
+  end
+
+  patch '/pedals/:id' do
+    @pedal = Pedal.find(params[:id])
+    @pedal.update(params[:pedal])
+    @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
+    @pedal.manufacturer = @manufacturer
+    @pedal.save
+    redirect "/pedals/#{@pedal.id}"
+  end
+
+  post '/pedals/:id/delete' do
+    @pedal = Pedal.find(params[:id])
+    @pedal.destroy
+    redirect '/pedals'
+  end
 
 end
