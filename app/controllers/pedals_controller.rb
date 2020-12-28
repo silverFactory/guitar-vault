@@ -22,6 +22,7 @@ class PedalsController < ApplicationController
     @pedal = Pedal.new(params[:pedal])
     @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
     @pedal.manufacturer = @manufacturer
+    @pedal.user_id = session[:user_id]
     @pedal.save
     redirect "/pedals/#{@pedal.id}"
   end
