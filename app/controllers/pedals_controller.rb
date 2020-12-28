@@ -49,7 +49,7 @@ class PedalsController < ApplicationController
     @pedal = Pedal.find(params[:id])
     @pedal.update(params[:pedal])
     @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
-    @pedal.manufacturer = @manufacturer
+    @pedal.manufacturer_id = @manufacturer.id
     @pedal.save
     redirect "/pedals/#{@pedal.id}"
   end

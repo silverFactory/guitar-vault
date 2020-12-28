@@ -22,6 +22,7 @@ class AmpsController < ApplicationController
     @amp = Amp.new(params[:amp])
     @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
     @amp.manufacturer = @manufacturer
+    @amp.user_id = session[:user_id]
     @amp.save
     redirect "/amps/#{@amp.id}"
   end
@@ -46,9 +47,11 @@ class AmpsController < ApplicationController
   end
 
   patch '/amps/:id' do
-    @amp = Amp.update(params[:amp])
+    @amp = Amp.find(params[:id])
+    @amp.update(params[:amp])
     @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
-    @amp.manufacturer = @manufacturer
+    #binding.pry
+    @amp.manufacturer_id = @manufacturer.id
     @amp.save
     redirect "/amps/#{@amp.id}"
   end
