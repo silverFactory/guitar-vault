@@ -1,0 +1,19 @@
+<h1>Edit Amp Info</h1>
+<form action="/amps/<%= @amp.id %>/edit" method="post">
+<input type="hidden" id="hidden" name="_method" value="patch">
+<label for="name">Name: </label>
+<input type="text" name="amp[name]" id="name" value="<%= @amp.name %>"><br>
+<label for="power_type">Power Type: </label>
+<input type="text" name="amp[power_type]" id="power_type" value="<%= @amp.power_type %>"><br>
+<label for="watts">Watts: </label>
+<input type="number" name="amp[watts]" id="watts"  value="<%= @amp.watts %>"><br>
+<label for="channels">Channels: </label>
+<input type="number" name="amp[channels]" id="channels" value="<%= @amp.channels %>"><br>
+<label for="num_speakers">Number of Speakers: </label>
+<input type="number" name="amp[num_speakers]" id="num_speakers" value="<%= @amp.num_speakers %>"><br>
+<label for="speaker_size">Speaker Size: </label>
+<input type="number" name="amp[speaker_size]" id="speaker_size" value="<%= @amp.speaker_size %>"><br>
+<label for="manufacturer">Manufacturer: </label>
+<input type="text" name="manufacturer" id="manufacturer" value="<%= @amp.manufacturer.name %>"><br>
+<button type="submit" name="Edit Amp">Edit Amp</button>
+</form>

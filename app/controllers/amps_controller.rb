@@ -18,5 +18,43 @@ class AmpsController < ApplicationController
     end
   end
 
+  post '/amps/new' do
+    @amp = Amp.new(params[:amp])
+    @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
+    @amp.manufacturer = @manufacturer
+    @amp.save
+    redirect "/amps/#{@amp.id}"
+  end
+
+  get '/amps/:id' do
+    @amp = Amp.find(params[:id])
+    if session[:user_id] == @amp.user_id
+      erb :'/amps/show'
+    else
+      redirect '/'
+    end
+  end
+
+  get '/amps/:id/edit' do
+    @amp = Amp.find(params[:id])
+    @manufacturer = @amp.manufacturer
+    if session[:user_id] == @amp.user_id
+      erb :'/amps/edit'
+    end
+  end
+
+  patch /amps/:id/edit' do
+    @amp = Amp.update(params[:amp])
+    @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
+    @amp.manufacturer = @manufacturer
+    @amp.save
+    redirect "/amps/#{@amp.id}"
+  end
+
+  post '/amps/:id/delete' do
+    @amp = Amp.find(params[:id])
+    @amp.destroy
+    redirect '/amps'
+  end
 
 end

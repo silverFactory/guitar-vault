@@ -1,0 +1,12 @@
+<h1><%= @amp.manufacturer.name %> <%= @amp.name %></h1><p>power_type"
+<p>Watts: <%= @amp.watts %></p><br>
+<p>Channels: <%= @amp.channels %></p><br>
+<p>Number of Speakers: <%= @amp.num_speakers %></p><br>
+<p>Speaker Size: <%= @amp.speaker_size %></p><br>
+<form action="/amps/<%= @amp.id %>/edit" method="get">
+<button type="submit" name="Edit Amp">Edit Amp</button>
+</form>
+<form action="/amps/<%= @amp.id %>/delete" method="post">
+<button type="submit" name="Delete Amp">Delete Amp</button>
+</form>
+<a href="/users/<%= @amp.user_id %>">Back to your Vault</a>

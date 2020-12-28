@@ -30,6 +30,8 @@ class GuitarsController < ApplicationController
     @guitar = Guitar.find(params[:id])
     if session[:user_id] == @guitar.user_id
       erb :'/guitars/show'
+    else
+      redirect '/'
     end
   end
 
