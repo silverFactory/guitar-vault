@@ -6,14 +6,14 @@
 <br>
 <a href="/guitars/new">Add Guitar</a><br>
 
-<h2>Amps: </h2>
+<h2><a href="/amps">Amps: </a></h2>
 <% @amps.each do |amp| %>
 <a href="/amps/<%= amp.id %>"><%= amp.name %></a><br>
 <% end %>
 <br>
 <a href="/amps/new">Add Amp</a><br>
 
-<h2>Pedals: </h2>
+<h2><a href="/pedals">Pedals: </a></h2>
 <% @pedals.each do |pedal| %>
 <a href="/pedals/<%= pedal.id %>"><%= pedal.name %></a><br>
 <% end %>
