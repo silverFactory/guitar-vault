@@ -19,12 +19,16 @@ class PedalsController < ApplicationController
   end
 
   post '/pedals/new' do
-    @pedal = Pedal.new(params[:pedal])
-    @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
-    @pedal.manufacturer = @manufacturer
-    @pedal.user_id = session[:user_id]
-    @pedal.save
-    redirect "/pedals/#{@pedal.id}"
+    if pedal_valid?(params)
+      @pedal = Pedal.new(params[:pedal])
+      @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
+      @pedal.manufacturer = @manufacturer
+      @pedal.user_id = session[:user_id]
+      @pedal.save
+      redirect "/pedals/#{@pedal.id}"
+    else
+      redirect "/pedals/new"
+    end
   end
 
   get '/pedals/:id' do
@@ -38,7 +42,6 @@ class PedalsController < ApplicationController
 
   get '/pedals/:id/edit' do
     @pedal = Pedal.find(params[:id])
-    #@manufacturer = @pedal.manufacturer
     if session[:user_id] == @pedal.user_id
       erb :'/pedals/edit'
     else
@@ -47,12 +50,16 @@ class PedalsController < ApplicationController
   end
 
   patch '/pedals/:id' do
-    @pedal = Pedal.find(params[:id])
-    @pedal.update(params[:pedal])
-    @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
-    @pedal.manufacturer_id = @manufacturer.id
-    @pedal.save
-    redirect "/pedals/#{@pedal.id}"
+    if pedal_valid?(params)
+      @pedal = Pedal.find(params[:id])
+      @pedal.update(params[:pedal])
+      @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
+      @pedal.manufacturer_id = @manufacturer.id
+      @pedal.save
+      redirect "/pedals/#{@pedal.id}"
+    else
+      redirect "/pedals/#{@pedal.id}/edit"
+    end
   end
 
   post '/pedals/:id/delete' do
@@ -61,4 +68,11 @@ class PedalsController < ApplicationController
     redirect '/pedals'
   end
 
+  def pedal_valid?(params)
+    if pedal[name] != "" && pedal[effect_type] != "" && pedal[pwoer_supply] != "" && params[:manufacturer] != ""
+      true
+    else
+      false
+    end
+  end
 end
