@@ -69,7 +69,7 @@ class PedalsController < ApplicationController
   end
 
   def pedal_valid?(params)
-    if pedal[name] != "" && pedal[effect_type] != "" && pedal[pwoer_supply] != "" && params[:manufacturer] != ""
+    if params[:pedal][:name] != "" && params[:pedal][:effect_type] != "" && params[:pedal][:power_supply] != "" && params[:manufacturer] != ""
       true
     else
       false

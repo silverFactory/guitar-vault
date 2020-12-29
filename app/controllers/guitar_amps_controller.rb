@@ -71,7 +71,7 @@ class AmpsController < ApplicationController
   end
 
   def amp_valid?(params)
-    if amp[:name] != "" && amp[:power_type] != "" && amp[:watts] != "" && amp[:channels] != "" && amp[:num_speakers] != "" && amp[:speaker_size] != "" && params[:manufacturer] != ""
+    if params[:amp][:name] != "" && params[:amp][:power_type] != "" && params[:amp][:watts] != "" && params[:amp][:channels] != "" && params[:amp][:num_speakers] != "" && params[:amp][:speaker_size] != "" && params[:manufacturer] != ""
       true
     else
       false
