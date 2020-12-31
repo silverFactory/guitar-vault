@@ -20,9 +20,9 @@ class GuitarsController < ApplicationController
 
   post '/guitars/new' do
     if guitar_valid?(params)
-      @guitar = Guitar.new(params[:guitar])
+      @guitar = current_user.guitars.build(params[:guitar])
       @manufacturer = Manufacturer.find_or_create_by(name: params[:manufacturer])
-      @guitar.user_id = session[:user_id]
+      # @guitar.user_id = session[:user_id]
       @guitar.manufacturer = @manufacturer
       @guitar.save
       redirect "/guitars/#{@guitar.id}"

@@ -1,8 +1,6 @@
 <h1><%= @guitar.manufacturer.name %> <%= @guitar.model %></h1>
 <p>Category : <%= @guitar.category %></p><br>
-<form action="/guitars/<%= @guitar.id %>/edit" method="get">
-<button type="submit" name="Edit Guitar">Edit Guitar</button>
-</form>
+<a href="/guitars/<%= @guitar.id %>/edit">Edit</a>
 <form action="/guitars/<%= @guitar.id %>/delete" method="post">
 <button type="submit" name="Delete Guitar">Delete Guitar</button>
 </form>
